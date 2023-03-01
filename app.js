@@ -8,6 +8,20 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 const allArticlesRouter = require("./routes/all-articles")        /////// TO IMPORT FILE /////
 const helmet = require("helmet");
+const arrArticle = [
+    <% arrArticle.forEach(item => { %>
+                    
+                    <article>
+                    <h2>
+                        <%= item.title %>
+                    </h2>
+                    <p>
+                        <%= item.summary %>
+                        <a class="btn" href="/articles/<%= item._id %> ">show more</a>
+                    </p>
+                </article>
+                <% }); %>
+];
 
 // for auto refresh
 const path = require("path");
