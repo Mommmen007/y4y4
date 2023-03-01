@@ -44,8 +44,15 @@ mongoose
 app.use(helmet());
 
 
-app.get("/", (req, res) => {
-  res.redirect("/articles");
+app.get('/', (req, res) => {
+    ejs.renderFile('./index.html', { arrArticle }, (err, data) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Internal Server Error');
+        } else {
+            res.send(data);
+        }
+    });
 });
 
 app.get("/add-new-article", (req, res) => {
